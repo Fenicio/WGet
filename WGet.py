@@ -26,7 +26,10 @@ class WGetCommand(sublime_plugin.WindowCommand):
 def decode(text):
   utfd = text.decode('utf-8')
   h = html2text.HTML2Text()
-  return h.handle(utfd)
+  try :
+    return h.handle(utfd)
+  except:
+    return utfd
 
 def wget(self, input):
   if input.startswith('http://') or input.startswith('https://'):
@@ -34,7 +37,7 @@ def wget(self, input):
   else:
     input = 'http://' + input
   request = urllib2.Request(input, None, headers={"User-Agent": "Sublime Text 2 WGet"})
-  http_file = urllib2.urlopen(request, timeout=6000)
+  http_file = urllib2.urlopen(request, timeout=16000)
   result = http_file.read()
   output_view = self.window.new_file()
   self.window.focus_view(output_view)
