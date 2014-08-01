@@ -4,6 +4,8 @@ import urllib
 import threading
 import urllib2
 import html2text
+import encodings.idna
+import unicodedata
 
 class WGetApiCall(threading.Thread):
   def __init__(self, sel, url):
@@ -20,7 +22,8 @@ class WGetCommand(sublime_plugin.WindowCommand):
     self.window.show_input_panel("URL to retrieve", "", self.run_wget_input,None,None)
 
   def run_wget_input(self,input):
-    wget_async(self, input)
+    deunicoded = input.encode('ascii','ignore')
+    wget_async(self, deunicoded)
 
 
 def decode(text):

@@ -5,6 +5,8 @@ __author__ = "Aaron Swartz (me@aaronsw.com)"
 __copyright__ = "(C) 2004-2008 Aaron Swartz. GNU GPL 3."
 __contributors__ = ["Martin 'Joey' Schulze", "Ricardo Reyes", "Kevin Jay North"]
 
+import encodings.idna
+
 # TODO:
 #   Support decoded entities with unifiable.
 
